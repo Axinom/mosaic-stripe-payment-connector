@@ -1,0 +1,8 @@
+{
+  "recommendations": [
+    "apollographql.vscode-apollo",
+    "dbaeumer.vscode-eslint",
+    "mikestead.dotenv"
+  ],
+  "unwantedRecommendations": ["ms-vscode.vscode-typescript-tslint-plugin"]
+}

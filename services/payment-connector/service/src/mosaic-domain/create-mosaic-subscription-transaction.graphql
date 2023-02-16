@@ -1,0 +1,9 @@
+mutation createSubscriptionTransaction(
+  $input: CreateSubscriptionTransactionInput!
+) {
+  createSubscriptionTransaction(input: $input) {
+    transaction {
+      id
+    }
+  }
+}

@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Stripe end user frontend application</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="billing.js"></script>
+    <script>
+      function rememberJwt() {
+        const value = document.getElementById('end-user-token').value;
+        const date = new Date();
+        date.setTime(date.getTime() + 30 * 24 * 60 * 60 * 1000);
+        expires = '; expires=' + date.toUTCString();
+        document.cookie =
+          'end-user-jwt=' + (value || '') + expires + '; path=/';
+      }
+      function loadJwt() {
+        document.getElementById('end-user-token').value = getCookieValue(
+          'end-user-jwt',
+        );
+      }
+      function getCookieValue(cname) {
+        var name = cname + '=';
+        var ca = document.cookie.split(';');
+        for (var i = 0; i < ca.length; i++) {
+          var c = ca[i];
+          while (c.charAt(0) == ' ') c = c.substring(1);
+          if (c.indexOf(name) == 0) return c.substring(name.length, c.length);
+        }
+        return null;
+      }
+      async function renderSubscriptionPlans() {
+        const billingUrl = decodeURIComponent(
+          getCookieValue('billing-service-base-url'),
+        );
+        const paymentConnectorUrl = decodeURIComponent(
+          getCookieValue('payment-connector-base-url'),
+        );
+        const jwt = document.getElementById('end-user-token').value;
+        const plans = await loadSubscriptionPlans(`${billingUrl}graphql`, jwt);
+
+        let li = '';
+        if (plans.errors) {
+          li = `There was an error: ${plans.errors[0].message}`;
+        } else {
+          for (const subscriptionPlan of plans.data.subscriptionPlans.nodes) {
+            for (const paymentPlan of subscriptionPlan.paymentPlans.nodes) {
+              for (const providerConfig of paymentPlan.providerConfigs.nodes) {
+                const text = `${subscriptionPlan.title} - ${paymentPlan.title} (${paymentPlan.periodQuantity} ${paymentPlan.periodUnit}) via ${providerConfig.paymentProvider.title}`;
+                if (providerConfig.paymentProvider.key === 'CPC_STRIPE') {
+                  li += /*html*/ `
+            <li>
+              <a href="#" onclick="startStripeSession('${paymentConnectorUrl}start-checkout', '${paymentPlan.id}', '${paymentPlan.prices.nodes[0].currency}', '${jwt}');return false;">${text}</a>
+            </li>`;
+                } else {
+                  li += /*html*/ `
+            <li>
+              <span>${text} - not supported</span>
+            </li>`;
+                }
+              }
+            }
+          }
+        }
+        document.getElementById('plans-list').innerHTML = li;
+      }
+      async function renderOverviewPages() {
+        const paymentConnectorUrl = decodeURIComponent(
+          getCookieValue('payment-connector-base-url'),
+        );
+        const jwt = document.getElementById('end-user-token').value;
+        const pages = await customerOverviewPages(
+          `${paymentConnectorUrl}customer-overview`,
+          jwt,
+        );
+
+        let li = '';
+        if (pages.length === 0) {
+          li = 'No overview page found.';
+        } else {
+          for (const page of pages) {
+            li += /*html*/ `
+            <li>
+              <a href="${page.url}">${page.name}</a>
+            </li>`;
+          }
+        }
+        document.getElementById('overview-page-list').innerHTML = li;
+      }
+    </script>
+  </head>
+  <body onload="loadJwt()">
+    <h1>Stripe end user frontend application</h1>
+
+    <p>
+      This app mimics a frontend application that your users would use. It might
+      be a video streaming solution, a podcast service, or any other type of
+      app.
+    </p>
+
+    <h2>(1) User login</h2>
+    <p>
+      A real app would implement a way for end users to log in via the Mosaic
+      User Service. For this simplified example please paste an end user JWT
+      into the text box below. You can create one e.g via the "token" script in
+      the "package.json" file of the frontend-service or from the Mosaic
+      Frontend Samples application.
+    </p>
+    <input
+      type="text"
+      name="end-user-token"
+      id="end-user-token"
+      placeholder="the end user JWT"
+    />
+    <button type="button" onclick="rememberJwt()">Remember token</button>
+
+    <h2>(2) Load subscription plans and payment plans</h2>
+    <p>
+      Click the following button to load the available subscription and payment
+      plans and follow the links to purchase one of them.
+    </p>
+    <p>
+      You can use the credit card "4242 4242 4242 4242", with any future date
+      and any 3 digit security code to do create a successful subscription or
+      "4000 0000 0000 9995" for a failed purchase. Other test credit cards are
+      listed on the
+      <a href="https://stripe.com/docs/testing" target="_blank"
+        >Stripe Testing</a
+      >
+      website.
+    </p>
+    <button type="button" onclick="renderSubscriptionPlans()">
+      Load subscription plans
+    </button>
+    <ol id="plans-list"></ol>
+
+    <h2>(3) List the Stripe overview pages of the customer</h2>
+    <p>
+      Click the following button to load the available overview pages. A Mosaic
+      end user can result in multiple Stripe customers as we need to create one
+      Stripe customer per used currency.
+    </p>
+    <button type="button" onclick="renderOverviewPages()">
+      Load overview pages
+    </button>
+    <ol id="overview-page-list"></ol>
+  </body>
+</html>

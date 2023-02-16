@@ -1,0 +1,16 @@
+mutation createSubscription($input: CreateSubscriptionInput!) {
+  createSubscription(input: $input) {
+    subscription {
+      id
+      paymentPlan {
+        providerConfigs(
+          filter: { paymentProviderKey: { equalTo: "CPC_STRIPE" } }
+        ) {
+          nodes {
+            externalId
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,5 @@
+**/node_modules/**
+services/**/dist/**
+**/coverage/**
+generated
+**/public

@@ -1,0 +1,21 @@
+/.yarn/*
+node_modules
+
+# build
+dist
+.cache
+
+# Jest
+coverage
+
+# JUnit Report
+junit.xml
+
+# Development
+.env
+.env.*
+!.env.*.template
+!.env.template
+
+# Logfiles
+*.log

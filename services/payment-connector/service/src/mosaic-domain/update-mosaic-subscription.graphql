@@ -1,0 +1,7 @@
+mutation updateSubscription($input: UpdateSubscriptionInput!) {
+  updateSubscription(input: $input) {
+    subscription {
+      id
+    }
+  }
+}

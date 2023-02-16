@@ -1,0 +1,29 @@
+{
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true,
+    "source.organizeImports": false
+  },
+  "jestrunner.jestCommand": "yarn util:load-vars jest",
+  "files.associations": {
+    ".env.*": "dotenv"
+  },
+  "typescript.tsdk": "./node_modules/typescript/lib",
+  "cSpell.words": [
+    "Axinom",
+    "Axinom's",
+    "codegen",
+    "Inflector",
+    "loglevel",
+    "urljoin"
+  ],
+  "[markdown]": {
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSaveMode": "file"
+  },
+  "[yaml]": {
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSaveMode": "file"
+  }
+}

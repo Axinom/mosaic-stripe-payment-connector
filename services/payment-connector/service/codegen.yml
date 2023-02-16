@@ -1,0 +1,14 @@
+overwrite: true
+schema: '${BILLING_SERVICE_MANAGEMENT_BASE_URL}/graphql'
+generates:
+  src/generated/graphql/billing.ts:
+    schema: '${BILLING_SERVICE_MANAGEMENT_BASE_URL}/graphql'
+    documents: 'src/mosaic-domain/*.graphql'
+    plugins:
+      - 'typescript'
+      - 'typescript-operations'
+      - 'typescript-graphql-request'
+    config:
+      withHOC: false
+      withComponent: false
+      withMutationFn: false
