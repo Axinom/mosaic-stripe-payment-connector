@@ -30,7 +30,8 @@
     "apply-all-templates": "mosaic apply-templates --replace",
     "util:load-vars": "env-cmd -f .env",
     "util:update-mosaic-packages": "ts-node ./scripts/update-mosaic-packages.ts",
-    "build:payment-connector:prod": "yarn && wsrun -trm -p payment-connector -c build && yarn install --prod"
+    "build:payment-connector:prod": "yarn && wsrun -trm -p stripe-payment-connector -c build && yarn install --prod",
+    "build:payment-frontend:prod": "yarn && wsrun -trm -p frontend-service -c build && yarn install --prod"
   },
   "devDependencies": {
     "@axinom/mosaic-cli": "0.9.4",
