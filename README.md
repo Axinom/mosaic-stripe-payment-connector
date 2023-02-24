@@ -28,20 +28,24 @@ Stripe payment gateway. It allows end users to purchase a subscription via
 Stripe and register this subscription and the corresponding payments in the
 Mosaic Billing Service.
 
-This repository contains an example of an Axinom Mosaic payment
-connector that can be used to integrate additional payment providers with the
-Axinom Mosaic Billing service. The example uses Stripe to allow end users to
-purchase subscriptions.
+This repository contains an example of an Axinom Mosaic payment connector that
+can be used to integrate additional payment providers with the Axinom Mosaic
+Billing service. The example uses Stripe to allow end users to purchase
+subscriptions.
 
-The package "frontend-service" is a very basic stub emulating a frontend app
-end users would use. In reality this would be an application where end
-users can e.g. watch movies if they have a subscription. The end user will use
-this application to subscribe to the service via the Stripe purchase flow through
+The package "frontend-service" is a very basic stub emulating a frontend app end
+users would use. In reality, this would be an application where end users can
+e.g. watch movies if they have a subscription. The end user will use this
+application to subscribe to the service via the Stripe purchase flow through
 their website.
 
 The code included in that repository is supposed to be customized by projects.
 The Mosaic libraries and services used by that solution will be provided,
 updated, and maintained by Axinom.
+
+You can find more details in our online documentation on how to integrate Stripe
+under:
+[https://portal.axinom.com/mosaic/documentation/media/implement-stripe-as-custom-payment-connector](https://portal.axinom.com/)
 
 ## Prerequisites
 

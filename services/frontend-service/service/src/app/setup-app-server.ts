@@ -15,7 +15,7 @@ export const setupAppServer = (
   config: Config,
   logger: Logger,
 ): void => {
-  app.use(function(req, res, next) {
+  app.use(function (req, res, next) {
     // A very simplified way to configure the service URLs for the client side code.
     res.cookie(
       'billing-service-base-url',

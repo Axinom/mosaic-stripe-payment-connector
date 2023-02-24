@@ -22,41 +22,18 @@ export const getConfigDefinitions = (
     ...getBasicConfigDefinitions(variables),
     ...getBasicCustomizableConfigDefinitions(variables),
     ...getBasicMetricsEndpointDefinitions(variables),
-    port: () =>
-      env
-        .get('PORT')
-        .required()
-        .asPortNumber(),
+    port: () => env.get('PORT').required().asPortNumber(),
     paymentConnectorBaseUrl: () =>
-      env
-        .get('PAYMENT_CONNECTOR_BASE_URL')
-        .required()
-        .asUrlString(),
+      env.get('PAYMENT_CONNECTOR_BASE_URL').required().asUrlString(),
     frontendApplicationBaseUrl: () =>
-      env
-        .get('FRONTEND_APPLICATION_BASE_URL')
-        .required()
-        .asUrlString(),
+      env.get('FRONTEND_APPLICATION_BASE_URL').required().asUrlString(),
     userServiceAuthBaseUrl: () =>
-      env
-        .get('USER_SERVICE_AUTH_BASE_URL')
-        .required()
-        .asUrlString(),
+      env.get('USER_SERVICE_AUTH_BASE_URL').required().asUrlString(),
     billingServiceManagementBaseUrl: () =>
-      env
-        .get('BILLING_SERVICE_MANAGEMENT_BASE_URL')
-        .required()
-        .asUrlString(),
-    stripeApiSecret: () =>
-      env
-        .get('STRIPE_API_SECRET')
-        .required()
-        .asString(),
+      env.get('BILLING_SERVICE_MANAGEMENT_BASE_URL').required().asUrlString(),
+    stripeApiSecret: () => env.get('STRIPE_API_SECRET').required().asString(),
     stripeWebsocketSecret: () =>
-      env
-        .get('STRIPE_WEBSOCKET_SECRET')
-        .required()
-        .asString(),
+      env.get('STRIPE_WEBSOCKET_SECRET').required().asString(),
   };
 };
 

@@ -20,31 +20,13 @@ export const getConfigDefinitions = (
   return {
     ...getBasicConfigDefinitions(variables),
     ...getBasicMetricsEndpointDefinitions(variables),
-    tenantId: () =>
-      env
-        .get('TENANT_ID')
-        .required()
-        .asString(),
-    environmentId: () =>
-      env
-        .get('ENVIRONMENT_ID')
-        .required()
-        .asString(),
-    port: () =>
-      env
-        .get('PORT')
-        .required()
-        .asPortNumber(),
+    tenantId: () => env.get('TENANT_ID').required().asString(),
+    environmentId: () => env.get('ENVIRONMENT_ID').required().asString(),
+    port: () => env.get('PORT').required().asPortNumber(),
     paymentConnectorBaseUrl: () =>
-      env
-        .get('PAYMENT_CONNECTOR_BASE_URL')
-        .required()
-        .asUrlString(),
+      env.get('PAYMENT_CONNECTOR_BASE_URL').required().asUrlString(),
     billingServiceEndUserBaseUrl: () =>
-      env
-        .get('BILLING_SERVICE_END_USER_BASE_URL')
-        .required()
-        .asUrlString(),
+      env.get('BILLING_SERVICE_END_USER_BASE_URL').required().asUrlString(),
     userServiceBaseUrl: () => env.get('USER_SERVICE_BASE_URL').asUrlString(),
     applicationId: () => env.get('APPLICATION_ID').asString(),
   };

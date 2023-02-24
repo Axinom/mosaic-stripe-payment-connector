@@ -39,7 +39,7 @@ async function bootstrap(): Promise<void> {
 
   // Initialize the stripe connection
   const stripe = new Stripe(config.stripeApiSecret, {
-    apiVersion: '2022-08-01',
+    apiVersion: '2022-11-15',
   });
 
   // Initialize the Mosaic billing service client
