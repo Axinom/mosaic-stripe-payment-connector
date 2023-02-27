@@ -1,7 +1,7 @@
 import {
-  ErrorCode,
   handleGlobalErrors,
   Logger,
+  MosaicErrors,
   setupGlobalConsoleOverride,
   setupGlobalLogMiddleware,
   setupGlobalSkipMaskMiddleware,
@@ -63,6 +63,6 @@ async function bootstrap(): Promise<void> {
 
 // Start the application or crash and burn.
 bootstrap().catch((error) => {
-  logger.fatal(error, { details: { code: ErrorCode.StartupError } });
+  logger.fatal(error, { details: { code: MosaicErrors.StartupError.code } });
   process.exit(-1);
 });
