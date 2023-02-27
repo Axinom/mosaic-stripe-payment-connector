@@ -1,7 +1,7 @@
 import {
-  ErrorCode,
   handleGlobalErrors,
   Logger,
+  MosaicErrors,
   setupGlobalConsoleOverride,
   setupGlobalLogMiddleware,
   setupGlobalSkipMaskMiddleware,
@@ -39,7 +39,7 @@ async function bootstrap(): Promise<void> {
 
   // Initialize the stripe connection
   const stripe = new Stripe(config.stripeApiSecret, {
-    apiVersion: '2022-08-01',
+    apiVersion: '2022-11-15',
   });
 
   // Initialize the Mosaic billing service client
@@ -63,6 +63,6 @@ async function bootstrap(): Promise<void> {
 
 // Start the application or crash and burn.
 bootstrap().catch((error) => {
-  logger.fatal(error, { details: { code: ErrorCode.StartupError } });
+  logger.fatal(error, { details: { code: MosaicErrors.StartupError.code } });
   process.exit(-1);
 });

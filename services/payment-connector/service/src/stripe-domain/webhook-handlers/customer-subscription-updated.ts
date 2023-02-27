@@ -150,6 +150,12 @@ const applyLifeCycleChange = (
       updateSubscriptionInput.lifecycleStatus =
         SubscriptionLifecycleStatus.Active;
       break;
+    case 'paused':
+      // The subscription is paused. It can be resumed later.
+      changeReason = 'The subscription was paused.';
+      updateSubscriptionInput.lifecycleStatus =
+        SubscriptionLifecycleStatus.OnHold;
+      break;
     default:
       //Exhaustiveness check
       throw new UnreachableCaseError(newStatus);

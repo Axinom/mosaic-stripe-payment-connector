@@ -45,7 +45,7 @@ export const webhooksRoute = (app: Application, config: Config): void => {
         // first log the event that we (try to) handle
         logger.debug({
           message: `Webhook event "${event.type}" arrived from Stripe`,
-          details: (event as unknown) as Dict<unknown>,
+          details: event as unknown as Dict<unknown>,
         });
         await callback();
       };
