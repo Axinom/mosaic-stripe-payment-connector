@@ -13,6 +13,12 @@ import { STRIPE_KEY } from '../stripe-domain';
 
 const serviceAccountTokenCache = new NodeCache({ stdTTL: 60 });
 
+export interface BillingSettings {
+  successRedirect: string;
+  cancelRedirect: string;
+  errorRedirect: string;
+}
+
 /**
  * GraphQL client to connect to the Mosaic Billing Management Service
  */
@@ -118,6 +124,30 @@ export class MosaicBillingClient {
       },
     );
     return data.createSubscriptionTransaction.transaction.id;
+  }
+
+  /**
+   * Get Mosaic Billing Service settings
+   */
+  async getValidatedSettings(): Promise<BillingSettings> {
+    const data = await this.sdk.getSettings(
+      {},
+      {
+        Authorization: `Bearer ${await this.requestServiceAccountToken()}`,
+      },
+    );
+
+    if (!data.getSettings || !data.getSettings.successRedirect) {
+      throw new Error('At least the success redirect URL must be configured.');
+    }
+
+    return {
+      successRedirect: data.getSettings.successRedirect,
+      cancelRedirect:
+        data.getSettings.cancelRedirect || data.getSettings.successRedirect,
+      errorRedirect:
+        data.getSettings.errorRedirect || data.getSettings.successRedirect,
+    };
   }
 }
 

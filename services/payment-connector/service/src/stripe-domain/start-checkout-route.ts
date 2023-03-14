@@ -26,6 +26,8 @@ export const startCheckoutRoute = (app: Application, config: Config): void => {
         req.header('Authorization'),
         config,
       );
+
+      const settings = await billingClient.getValidatedSettings();
       const subscription = await billingClient.createSubscription(
         req.body.paymentPlanId,
         endUser.sub,
@@ -48,7 +50,7 @@ export const startCheckoutRoute = (app: Application, config: Config): void => {
         customer: customerId,
         // route the Stripe success redirect through the payment connector
         success_url: `${config.paymentConnectorBaseUrl}success-checkout?session_id={CHECKOUT_SESSION_ID}`,
-        cancel_url: `${config.frontendApplicationBaseUrl}cancelled.html`,
+        cancel_url: settings.cancelRedirect,
         metadata: {
           source: 'session',
           subscriptionId: subscription.id,
