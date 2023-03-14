@@ -1075,6 +1075,7 @@ export type Mutation = {
   deletePaymentProvider?: Maybe<DeletePaymentProviderPayload>;
   /** Deletes a single `PaypalSetting` using a unique key. */
   deletePaypalSetting?: Maybe<DeletePaypalSettingPayload>;
+  populateSubscriptions?: Maybe<PopulatePayload>;
   setSettings?: Maybe<SetSettingsPayload>;
   /** Updates a single `PaymentProvider` using a unique key and a patch. */
   updatePaymentProvider?: Maybe<UpdatePaymentProviderPayload>;
@@ -1120,6 +1121,12 @@ export type MutationDeletePaymentProviderArgs = {
 /** The root mutation type which contains root level fields which mutate data. */
 export type MutationDeletePaypalSettingArgs = {
   input: DeletePaypalSettingInput;
+};
+
+
+/** The root mutation type which contains root level fields which mutate data. */
+export type MutationPopulateSubscriptionsArgs = {
+  input: PopulateInput;
 };
 
 
@@ -1831,7 +1838,7 @@ export enum PaymentProvidersOrderBy {
   UpdatedDateDesc = 'UPDATED_DATE_DESC'
 }
 
-/** @permissions: SETTINGS_VIEW,SETTINGS_EDIT,ADMIN */
+/** @permissions: END_USER,SETTINGS_VIEW,SETTINGS_EDIT,ADMIN */
 export type PaypalSetting = {
   __typename?: 'PaypalSetting';
   clientId?: Maybe<Scalars['String']>;
@@ -1911,7 +1918,7 @@ export type PaypalSettingPatch = {
 
 /**
  * A connection to a list of `PaypalSetting` values.
- * @permissions: SETTINGS_VIEW,SETTINGS_EDIT,ADMIN
+ * @permissions: END_USER,SETTINGS_VIEW,SETTINGS_EDIT,ADMIN
  */
 export type PaypalSettingsConnection = {
   __typename?: 'PaypalSettingsConnection';
@@ -1988,6 +1995,18 @@ export type PeriodUnitFilter = {
   notEqualTo?: InputMaybe<PeriodUnit>;
   /** Not included in the specified list. */
   notIn?: InputMaybe<Array<PeriodUnit>>;
+};
+
+export type PopulateInput = {
+  count: Scalars['Int'];
+  includeStatusChanges?: InputMaybe<Scalars['Boolean']>;
+  includeTransactions?: InputMaybe<Scalars['Boolean']>;
+};
+
+export type PopulatePayload = {
+  __typename?: 'PopulatePayload';
+  count: Scalars['Int'];
+  query?: Maybe<Query>;
 };
 
 /** The root query type which gives access points into the data universe. */
@@ -3619,6 +3638,11 @@ export type CreateSubscriptionMutationVariables = Exact<{
 
 export type CreateSubscriptionMutation = { __typename?: 'Mutation', createSubscription: { __typename?: 'CreateSubscriptionPayload', subscription: { __typename?: 'SubscriptionType', id: any, paymentPlan?: { __typename?: 'PaymentPlan', providerConfigs: { __typename?: 'PaymentPlanProviderConfigsConnection', nodes: Array<{ __typename?: 'PaymentPlanProviderConfig', externalId?: string | null }> } } | null } } };
 
+export type GetSettingsQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetSettingsQuery = { __typename?: 'Query', getSettings?: { __typename?: 'Setting', successRedirect?: string | null, cancelRedirect?: string | null, errorRedirect?: string | null } | null };
+
 export type UpdateSubscriptionMutationVariables = Exact<{
   input: UpdateSubscriptionInput;
 }>;
@@ -3652,6 +3676,15 @@ export const CreateSubscriptionDocument = gql`
   }
 }
     `;
+export const GetSettingsDocument = gql`
+    query getSettings {
+  getSettings {
+    successRedirect
+    cancelRedirect
+    errorRedirect
+  }
+}
+    `;
 export const UpdateSubscriptionDocument = gql`
     mutation updateSubscription($input: UpdateSubscriptionInput!) {
   updateSubscription(input: $input) {
@@ -3674,6 +3707,9 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
     },
     createSubscription(variables: CreateSubscriptionMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<CreateSubscriptionMutation> {
       return withWrapper((wrappedRequestHeaders) => client.request<CreateSubscriptionMutation>(CreateSubscriptionDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'createSubscription', 'mutation');
+    },
+    getSettings(variables?: GetSettingsQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<GetSettingsQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<GetSettingsQuery>(GetSettingsDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'getSettings', 'query');
     },
     updateSubscription(variables: UpdateSubscriptionMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<UpdateSubscriptionMutation> {
       return withWrapper((wrappedRequestHeaders) => client.request<UpdateSubscriptionMutation>(UpdateSubscriptionDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'updateSubscription', 'mutation');

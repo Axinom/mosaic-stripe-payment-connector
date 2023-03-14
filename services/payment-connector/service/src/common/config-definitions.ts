@@ -25,8 +25,6 @@ export const getConfigDefinitions = (
     port: () => env.get('PORT').required().asPortNumber(),
     paymentConnectorBaseUrl: () =>
       env.get('PAYMENT_CONNECTOR_BASE_URL').required().asUrlString(),
-    frontendApplicationBaseUrl: () =>
-      env.get('FRONTEND_APPLICATION_BASE_URL').required().asUrlString(),
     userServiceAuthBaseUrl: () =>
       env.get('USER_SERVICE_AUTH_BASE_URL').required().asUrlString(),
     billingServiceManagementBaseUrl: () =>

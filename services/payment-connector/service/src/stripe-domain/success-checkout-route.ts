@@ -2,7 +2,7 @@ import { assertError, Logger } from '@axinom/mosaic-service-common';
 import { Application } from 'express';
 import { Config } from '../common';
 import { SubscriptionLifecycleStatus } from '../generated';
-import { getMosaicBillingClient } from '../mosaic-domain';
+import { BillingSettings, getMosaicBillingClient } from '../mosaic-domain';
 import { getStripe } from './stripe-init';
 import { convertToISOString } from './stripe-utils';
 
@@ -23,7 +23,9 @@ export const successCheckoutRoute = (
   const logger = new Logger({ context: 'Success Subscription Redirect' });
 
   app.get('/success-checkout', async (req, res) => {
+    let settings: BillingSettings | null = null;
     try {
+      settings = await billingClient.getValidatedSettings();
       const sessionId = req.query.session_id as string;
       if (sessionId) {
         const { subscription } = await stripe.checkout.sessions.retrieve(
@@ -45,9 +47,13 @@ export const successCheckoutRoute = (
             activationDate: convertToISOString(subscription.start_date),
             periodEndDate: convertToISOString(subscription.current_period_end),
           });
-          res.redirect(
-            `${config.frontendApplicationBaseUrl}success.html?subscription_id=${subscriptionId}`,
+
+          const successRedirectUrl = new URL(settings.successRedirect);
+          successRedirectUrl.searchParams.append(
+            'subscription_id',
+            subscriptionId,
           );
+          res.redirect(successRedirectUrl.href);
           return;
         }
       }
@@ -56,7 +62,15 @@ export const successCheckoutRoute = (
       logger.error(error);
     }
 
-    // In all "not active subscription" cases still redirect to the success URL but don't include the subscription ID
-    res.redirect(`${config.frontendApplicationBaseUrl}success.html`);
+    if (settings !== null) {
+      // In all "not active subscription" cases still redirect to the success URL but don't include the subscription ID
+      res.redirect(settings.successRedirect);
+    } else {
+      res
+        .status(400)
+        .send(
+          'An error occurred while retrieving Mosaic Billing Service settings',
+        );
+    }
   });
 };

@@ -1,0 +1,7 @@
+query getSettings {
+  getSettings {
+    successRedirect
+    cancelRedirect
+    errorRedirect
+  }
+}
