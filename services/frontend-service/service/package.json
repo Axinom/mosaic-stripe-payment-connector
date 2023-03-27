@@ -47,7 +47,7 @@
     "concurrently": "^7.6.0",
     "copy-and-watch": "^0.1.6",
     "env-cmd": "^10.1.0",
-    "rimraf": "^4.1.2",
+    "rimraf": "^4.4.1",
     "sinon": "^15.0.1",
     "ts-node": "^10.9.1",
     "tsc-watch": "^6.0.0"
