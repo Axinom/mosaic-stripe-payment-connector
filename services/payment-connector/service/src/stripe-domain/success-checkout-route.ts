@@ -16,7 +16,8 @@ import { convertToISOString } from './stripe-utils';
  */
 export const successCheckoutRoute = (
   app: Application,
-  config: Config,
+  // eslint-disable-next-line no-unused-vars
+  _config: Config,
 ): void => {
   const stripe = getStripe(app);
   const billingClient = getMosaicBillingClient(app);
