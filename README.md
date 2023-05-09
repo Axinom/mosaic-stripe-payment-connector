@@ -125,8 +125,11 @@ Go to "Service Accounts" and create a new service account "stripe-connect".
 Download the settings file and keep the `TENANT_ID`, `ENVIRONMENT_ID`,
 `CLIENT_ID`, and `CLIENT_SECRET` settings for later.
 
-Go to "Permissions" and make sure at least the following permission is assigned:
-`BILLING SERVICE (Managed by Axinom) > Subscriptions: Edit`.
+Go to "Permissions" and make sure at least the following 2 permissions are
+assigned:
+
+- `BILLING SERVICE (Managed by Axinom) > Subscriptions: Edit`.
+- `BILLING SERVICE (Managed by Axinom) > Settings: View`.
 
 Optional: Purchasing subscriptions via Stripe requires the JWT from an end user.
 To make this process easier you can run the `token` script from the file
@@ -141,6 +144,12 @@ from the Axinom Portal. After following this guide you have a way to log in end
 users via a 3rd party identity provider like Google. And you created an
 application that can use the configured identity provider to log into this
 application.
+
+Finally, go to Billing & Monetization Services configuration for your
+environment and enter the following values:
+
+- Success Redirect URL: http://localhost:20000/success.html
+- Cancel Redirect URL: http://localhost:20000/cancelled.html
 
 ## <a name="prepareSub"></a>Prepare the subscription settings
 
