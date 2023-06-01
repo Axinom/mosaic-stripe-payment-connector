@@ -52,7 +52,7 @@ under:
 Before using the customizable solution make sure that you have the following
 software installed:
 
-- [node.js](https://nodejs.org/en/) in version 14.\*
+- [node.js](https://nodejs.org/en/) in version 18.\*
 - [Yarn](https://classic.yarnpkg.com/en/docs/install) class version
 
 ## Prepare and use the payment connector solution
