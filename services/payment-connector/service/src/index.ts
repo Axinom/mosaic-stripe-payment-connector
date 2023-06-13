@@ -1,20 +1,45 @@
 import {
+  defaultMaskKeywordsArray,
+  defaultMaskMiddleware,
+  defaultSkipMaskMiddleware,
   handleGlobalErrors,
+  Log,
   Logger,
+  MaskMiddleware,
+  MaskMode,
+  MaskOptions,
   MosaicErrors,
   setupGlobalConsoleOverride,
   setupGlobalLogMiddleware,
   setupGlobalSkipMaskMiddleware,
   setupLivenessAndReadiness,
   setupMonitoring,
+  SkipMaskMiddleware,
+  SkipMaskResult,
+  skipMaskTag,
   tenantEnvironmentIdsLogMiddleware,
-  trimErrorsSkipMaskMiddleware,
 } from '@axinom/mosaic-service-common';
 import express from 'express';
 import { Stripe } from 'stripe';
 import { getFullConfig } from './common';
 import { MosaicBillingClient, setMosaicBillingClient } from './mosaic-domain';
 import { setStripe, setupExpressServer } from './stripe-domain';
+
+const customMasker: SkipMaskMiddleware = (
+  log: Log,
+  maskMiddleware: MaskMiddleware = defaultMaskMiddleware,
+  maskOptions: MaskOptions = {
+    maskMode: MaskMode.SECRETS_HIDDEN,
+    keywords: defaultMaskKeywordsArray,
+  },
+): SkipMaskResult => {
+  log.details = {
+    ...log.details,
+    skipMaskTag,
+  };
+
+  return defaultSkipMaskMiddleware(log, maskMiddleware, maskOptions);
+};
 
 // Create the default logger instance to log the application bootstrap sequence and pass to downstream components (where it makes sense).
 const logger = new Logger({ context: 'bootstrap' });
@@ -28,7 +53,7 @@ async function bootstrap(): Promise<void> {
   handleGlobalErrors(logger);
   // Enable a global logging middleware that skips certain logs from having their log values masked (skip false positives).
   // A different middleware can be used in every logger instance where needed.
-  setupGlobalSkipMaskMiddleware(trimErrorsSkipMaskMiddleware);
+  setupGlobalSkipMaskMiddleware(customMasker);
   // Override console calls (mainly from other 3-d party libs) to log them using mosaic logger in a JSON format.
   setupGlobalConsoleOverride(logger);
   // Create a config object.
