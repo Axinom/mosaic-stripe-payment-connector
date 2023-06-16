@@ -52,24 +52,6 @@
     ajv-draft-04 "^1.0.0"
     call-me-maybe "^1.0.1"
 
-"@apollo/client@^3.2.5":
-  version "3.6.9"
-  resolved "https://registry.yarnpkg.com/@apollo/client/-/client-3.6.9.tgz#ad0ee2e3a3c92dbed4acd6917b6158a492739d94"
-  integrity sha512-Y1yu8qa2YeaCUBVuw08x8NHenFi0sw2I3KCu7Kw9mDSu86HmmtHJkCAifKVrN2iPgDTW/BbP3EpSV8/EQCcxZA==
-  dependencies:
-    "@graphql-typed-document-node/core" "^3.1.1"
-    "@wry/context" "^0.6.0"
-    "@wry/equality" "^0.5.0"
-    "@wry/trie" "^0.3.0"
-    graphql-tag "^2.12.6"
-    hoist-non-react-statics "^3.3.2"
-    optimism "^0.16.1"
-    prop-types "^15.7.2"
-    symbol-observable "^4.0.0"
-    ts-invariant "^0.10.3"
-    tslib "^2.3.0"
-    zen-observable-ts "^1.2.5"
-
 "@apollo/client@^3.7.9":
   version "3.7.14"
   resolved "https://registry.yarnpkg.com/@apollo/client/-/client-3.7.14.tgz#40ef90390e6690e94917457cd82bdeb29e8b6af9"
@@ -139,22 +121,7 @@
     change-case "^4.1.2"
     openapi-types "9.3.0"
 
-"@asyncapi/parser@^1.12.0":
-  version "1.15.1"
-  resolved "https://registry.yarnpkg.com/@asyncapi/parser/-/parser-1.15.1.tgz#95dc3b7c36b7ecbfb7a9b38ea80dcadfcd3cfeba"
-  integrity sha512-n8Ny17ar0+4mm+nU1ddvu44DKxAzTr1NtH2yPWJRpODFzjH2BrQ0Xe1e7djzL2jJjeqHpWl6DZdLWChFvL0iPg==
-  dependencies:
-    "@apidevtools/json-schema-ref-parser" "^9.0.6"
-    "@asyncapi/specs" "^2.14.0"
-    "@fmvilas/pseudo-yaml-ast" "^0.3.1"
-    ajv "^6.10.1"
-    js-yaml "^3.13.1"
-    json-to-ast "^2.1.0"
-    lodash.clonedeep "^4.5.0"
-    node-fetch "^2.6.0"
-    tiny-merge-patch "^0.1.2"
-
-"@asyncapi/parser@^1.15.0":
+"@asyncapi/parser@^1.12.0", "@asyncapi/parser@^1.15.0":
   version "1.18.1"
   resolved "https://registry.yarnpkg.com/@asyncapi/parser/-/parser-1.18.1.tgz#5185754eb0fdf2a481a260e96766a443fcd4b391"
   integrity sha512-7sU9DajLV+vA2vShTYmD5lbtbTY6TOcGxB4Z4IcpRp8x5pejOsN32iU05eIYCnuamsi5SMscFxoi6fIO2vPK3Q==
@@ -169,11 +136,6 @@
     node-fetch "^2.6.0"
     tiny-merge-patch "^0.1.2"
 
-"@asyncapi/specs@^2.14.0":
-  version "2.14.0"
-  resolved "https://registry.yarnpkg.com/@asyncapi/specs/-/specs-2.14.0.tgz#a4535fedde931181f20d41356ed1906d0fb73d48"
-  integrity sha512-hHsYF6XsYNIKb1P2rXaooF4H+uKKQ4b/Ljxrk3rZ3riEDiSxMshMEfb1fUlw9Yj4V4OmJhjXwkNvw8W59AXv1A==
-
 "@asyncapi/specs@^4.1.1":
   version "4.1.1"
   resolved "https://registry.yarnpkg.com/@asyncapi/specs/-/specs-4.1.1.tgz#3cb9fa9e1e7cf2c205d22ff4fba7ddbc41bcfb62"
@@ -181,16 +143,16 @@
   dependencies:
     "@types/json-schema" "^7.0.11"
 
-"@axinom/mosaic-cli@0.16.0":
-  version "0.16.0"
-  resolved "https://registry.yarnpkg.com/@axinom/mosaic-cli/-/mosaic-cli-0.16.0.tgz#2690907c953932d4ca8a3e62616ef72deed6a750"
-  integrity sha512-1qrsgWUcWHqvpQb1rL1qczEWCUacCr1jj3vo/1LZS98fAO+hArEwjcsxKh0ViaMHGRFlqVeAQcltWElnmknWSw==
+"@axinom/mosaic-cli@0.18.4":
+  version "0.18.4"
+  resolved "https://registry.yarnpkg.com/@axinom/mosaic-cli/-/mosaic-cli-0.18.4.tgz#d77791ec74ba4305e4059a6b5969ab7d56958f5d"
+  integrity sha512-yQMHg6l2gBwhhW0JW/K0FpGVVc79H93NBA9wynJ8CnNZBO9sKscQsUe8MPLur4VPfHPQyXdrrKar7rWV5xDB3Q==
   dependencies:
     "@asyncapi/diff" "^0.4.0"
     "@asyncapi/modelina" "^0.43.0"
     "@asyncapi/parser" "^1.15.0"
-    "@axinom/mosaic-id-link-be" "^0.11.0"
-    "@axinom/mosaic-service-common" "^0.28.0"
+    "@axinom/mosaic-id-link-be" "^0.13.2"
+    "@axinom/mosaic-service-common" "^0.33.0"
     "@graphql-inspector/core" "^3.1.2"
     "@stoplight/spectral" "^5.9.1"
     chalk "^4.1.0"
@@ -208,11 +170,6 @@
     json5 "^2.2.0"
     pg "^8.5.1"
     sql-formatter "^4.0.2"
-
-"@axinom/mosaic-core@^0.3.0":
-  version "0.3.0"
-  resolved "https://registry.yarnpkg.com/@axinom/mosaic-core/-/mosaic-core-0.3.0.tgz#2a3d2c4d6a94f99aaa7b271b0bd70abd773cab70"
-  integrity sha512-jP9LyIkIkeqSEUVJ4r//x3Jg7yonMUJ7lfaGBUUFEb5mSHOCFkyraKGC93MiK9BF9DxJ9vK6ULb7yVrNgUl7Gw==
 
 "@axinom/mosaic-core@^0.4.5":
   version "0.4.5"
@@ -243,7 +200,7 @@
     rascal "^14.0.1"
     subscriptions-transport-ws "^0.9.19"
 
-"@axinom/mosaic-id-link-be@0.13.2":
+"@axinom/mosaic-id-link-be@0.13.2", "@axinom/mosaic-id-link-be@^0.13.2":
   version "0.13.2"
   resolved "https://registry.yarnpkg.com/@axinom/mosaic-id-link-be/-/mosaic-id-link-be-0.13.2.tgz#b3af70256b9ddc31aadeb1387a7e3cd142a92241"
   integrity sha512-wdQHRssK6Capw/OWEASqpeVrtlZ7RMq77ng7RY0NuvTKxjibvLZsUgkxYVpntY4UYZTjtNO6QOzXxiHcgpXSpA==
@@ -256,27 +213,6 @@
     cross-fetch "^3.0.4"
     graphql "^15.4.0"
     graphql-tag "^2.11.0"
-
-"@axinom/mosaic-id-link-be@^0.11.0":
-  version "0.11.0"
-  resolved "https://registry.yarnpkg.com/@axinom/mosaic-id-link-be/-/mosaic-id-link-be-0.11.0.tgz#622019e212f58429b40a4cf2d2900278bc7f3af3"
-  integrity sha512-KlTJiJCPFrNJfByb2h3wwmf6EgGLwd76iqMVJyrgK0k9PRUOLxrEp2rQpzBOA2hvUakRNdzA1B2aszYmUOsoCA==
-  dependencies:
-    "@apollo/client" "^3.2.5"
-    "@axinom/mosaic-core" "^0.3.0"
-    "@axinom/mosaic-id-utils" "^0.12.0"
-    "@axinom/mosaic-service-common" "^0.28.0"
-    axios "^0.19.2"
-    cross-fetch "^3.0.4"
-    graphql "^15.4.0"
-    graphql-tag "^2.11.0"
-
-"@axinom/mosaic-id-utils@^0.12.0":
-  version "0.12.0"
-  resolved "https://registry.yarnpkg.com/@axinom/mosaic-id-utils/-/mosaic-id-utils-0.12.0.tgz#d7ab3674064750df7974feac6b4c16581f3e4ddc"
-  integrity sha512-qe+iDRKGgxAhY8eNrt6K5wX936La01dDbfRIcxUIGuK3ORdnE75jdnhxPJkpaPMl8om4v/PkPikXJmZvlq1chA==
-  dependencies:
-    "@axinom/mosaic-core" "^0.3.0"
 
 "@axinom/mosaic-id-utils@^0.15.2":
   version "0.15.2"
@@ -332,34 +268,6 @@
     uuid "^8.3.2"
     uuid-encoder "^1.2.0"
     verror "^1.10.1"
-
-"@axinom/mosaic-service-common@^0.28.0":
-  version "0.28.0"
-  resolved "https://registry.yarnpkg.com/@axinom/mosaic-service-common/-/mosaic-service-common-0.28.0.tgz#17aaf5e6854b3166f98f2f650f4868224048883a"
-  integrity sha512-WtUxI+3zHW+rjm20cSZ3LwVzSc/+ZctD1hiLlCnvXRiYXJ8N56jvX1lTWffM7pUesTn77SCkaagQb5ft/sIB4w==
-  dependencies:
-    "@graphile/pg-pubsub" "^4.12.3"
-    ajv "^7.0.3"
-    ajv-formats "^2.1.1"
-    endent "^2.1.0"
-    env-var "^6.3.0"
-    express "^4.17.1"
-    express-basic-auth "^1.2.1"
-    fast-stable-stringify "^1.0.0"
-    graphile-build "^4.13.0"
-    graphile-build-pg "^4.13.0"
-    graphile-utils "^4.13.0"
-    graphql "^15.4.0"
-    inflection "^1.12.0"
-    moment "^2.29.1"
-    pg "^8.5.1"
-    postgraphile "^4.13.0"
-    prom-client "^13.0.0"
-    serialize-error "^7.0.1"
-    short-hash "^1.0.0"
-    uuid "^8.3.2"
-    uuid-encoder "^1.2.0"
-    verror "^1.10.0"
 
 "@babel/code-frame@^7.0.0", "@babel/code-frame@^7.12.13", "@babel/code-frame@^7.18.6":
   version "7.18.6"
@@ -3060,13 +2968,6 @@
     fast-url-parser "^1.1.3"
     tslib "^2.3.1"
 
-"@wry/context@^0.6.0":
-  version "0.6.1"
-  resolved "https://registry.yarnpkg.com/@wry/context/-/context-0.6.1.tgz#c3c29c0ad622adb00f6a53303c4f965ee06ebeb2"
-  integrity sha512-LOmVnY1iTU2D8tv4Xf6MVMZZ+juIJ87Kt/plMijjN20NMAXGmH4u8bS1t0uT74cZ5gwpocYueV58YwyI8y+GKw==
-  dependencies:
-    tslib "^2.3.0"
-
 "@wry/context@^0.7.0":
   version "0.7.3"
   resolved "https://registry.yarnpkg.com/@wry/context/-/context-0.7.3.tgz#240f6dfd4db5ef54f81f6597f6714e58d4f476a1"
@@ -4598,12 +4499,7 @@ dot-case@^3.0.4:
     no-case "^3.0.4"
     tslib "^2.0.3"
 
-dotenv@^16.0.0:
-  version "16.0.2"
-  resolved "https://registry.yarnpkg.com/dotenv/-/dotenv-16.0.2.tgz#0b0f8652c016a3858ef795024508cddc4bffc5bf"
-  integrity sha512-JvpYKUmzQhYoIFgK2MOnF3bciIZoItIIoryihy0rIA+H4Jy0FmgyKYAHCTN98P5ybGSJcIFbh6QKeJdtZd1qhA==
-
-dotenv@^16.0.3:
+dotenv@^16.0.0, dotenv@^16.0.3:
   version "16.0.3"
   resolved "https://registry.yarnpkg.com/dotenv/-/dotenv-16.0.3.tgz#115aec42bac5053db3c456db30cc243a5a836a07"
   integrity sha512-7GO6HghkA5fYG9TYnNxi14/7K9f5occMlp3zXAuSxn7CKCxt9xbNWG7yF8hTCSUchlfWSe3uLmlPfigevRItzQ==
@@ -8192,14 +8088,6 @@ openapi-types@9.3.0:
   resolved "https://registry.yarnpkg.com/openapi-types/-/openapi-types-9.3.0.tgz#2d90549edb928cf06cf83018485a1a5961fbd2b9"
   integrity sha512-sR23YjmuwDSMsQVZDHbV9mPgi0RyniQlqR0AQxTC2/F3cpSjRFMH3CFPjoWvNqhC4OxPkDYNb2l8Mc1Me6D/KQ==
 
-optimism@^0.16.1:
-  version "0.16.1"
-  resolved "https://registry.yarnpkg.com/optimism/-/optimism-0.16.1.tgz#7c8efc1f3179f18307b887e18c15c5b7133f6e7d"
-  integrity sha512-64i+Uw3otrndfq5kaoGNoY7pvOhSsjFEN4bdEFh80MWVk/dbgJfMv7VFDeCT8LxNAlEVhQmdVEbfE7X2nWNIIg==
-  dependencies:
-    "@wry/context" "^0.6.0"
-    "@wry/trie" "^0.3.0"
-
 optimism@^0.16.2:
   version "0.16.2"
   resolved "https://registry.yarnpkg.com/optimism/-/optimism-0.16.2.tgz#519b0c78b3b30954baed0defe5143de7776bf081"
@@ -8487,17 +8375,12 @@ pg-int8@1.0.1:
   resolved "https://registry.yarnpkg.com/pg-int8/-/pg-int8-1.0.1.tgz#943bd463bf5b71b4170115f80f8efc9a0c0eb78c"
   integrity sha512-WCtabS6t3c8SkpDBUlb1kjOs7l66xsGdKpIPZsg4wR+B3+u9UAum2odSsF9tnvxg80h4ZxLWMy4pRjOsFIqQpw==
 
-pg-pool@^3.5.1:
-  version "3.5.1"
-  resolved "https://registry.yarnpkg.com/pg-pool/-/pg-pool-3.5.1.tgz#f499ce76f9bf5097488b3b83b19861f28e4ed905"
-  integrity sha512-6iCR0wVrro6OOHFsyavV+i6KYL4lVNyYAB9RD18w66xSzN+d8b66HiwuP30Gp1SH5O9T82fckkzsRjlrhD0ioQ==
-
 pg-pool@^3.5.2:
   version "3.5.2"
   resolved "https://registry.yarnpkg.com/pg-pool/-/pg-pool-3.5.2.tgz#ed1bed1fb8d79f1c6fd5fb1c99e990fbf9ddf178"
   integrity sha512-His3Fh17Z4eg7oANLob6ZvH8xIVen3phEZh2QuyrIl4dQSDVEabNducv6ysROKpDNPSD+12tONZVWfSgMvDD9w==
 
-pg-protocol@*, pg-protocol@^1.5.0:
+pg-protocol@*:
   version "1.5.0"
   resolved "https://registry.yarnpkg.com/pg-protocol/-/pg-protocol-1.5.0.tgz#b5dd452257314565e2d54ab3c132adc46565a6a0"
   integrity sha512-muRttij7H8TqRNu/DxrAJQITO4Ac7RmX3Klyr/9mJEOBeIpgnF8f9jAfRz5d3XwQZl5qBjF9gLsUtMPJE0vezQ==
@@ -8528,7 +8411,7 @@ pg-types@^2.1.0, pg-types@^2.2.0:
     postgres-date "~1.0.4"
     postgres-interval "^1.1.0"
 
-pg@8.9.0:
+pg@8.9.0, "pg@>=6.1.0 <9", pg@^8.5.1:
   version "8.9.0"
   resolved "https://registry.yarnpkg.com/pg/-/pg-8.9.0.tgz#73c5d77a854d36b0e185450dacb8b90c669e040b"
   integrity sha512-ZJM+qkEbtOHRuXjmvBtOgNOXOtLSbxiMiUVMgE4rV6Zwocy03RicCVvDXgx8l4Biwo8/qORUnEqn2fdQzV7KCg==
@@ -8538,19 +8421,6 @@ pg@8.9.0:
     pg-connection-string "^2.5.0"
     pg-pool "^3.5.2"
     pg-protocol "^1.6.0"
-    pg-types "^2.1.0"
-    pgpass "1.x"
-
-"pg@>=6.1.0 <9", pg@^8.5.1:
-  version "8.7.3"
-  resolved "https://registry.yarnpkg.com/pg/-/pg-8.7.3.tgz#8a5bdd664ca4fda4db7997ec634c6e5455b27c44"
-  integrity sha512-HPmH4GH4H3AOprDJOazoIcpI49XFsHCe8xlrjHkWiapdbHK+HLtbm/GQzXYAZwmPju/kzKhjaSfMACG+8cgJcw==
-  dependencies:
-    buffer-writer "2.0.0"
-    packet-reader "1.0.0"
-    pg-connection-string "^2.5.0"
-    pg-pool "^3.5.1"
-    pg-protocol "^1.5.0"
     pg-types "^2.1.0"
     pgpass "1.x"
 
@@ -8703,7 +8573,7 @@ pretty-format@^29.0.0, pretty-format@^29.5.0:
     ansi-styles "^5.0.0"
     react-is "^18.0.0"
 
-prom-client@^13.0.0, prom-client@^13.2.0:
+prom-client@^13.2.0:
   version "13.2.0"
   resolved "https://registry.yarnpkg.com/prom-client/-/prom-client-13.2.0.tgz#99d13357912dd400f8911b77df19f7b328a93e92"
   integrity sha512-wGr5mlNNdRNzEhRYXgboUU2LxHWIojxscJKmtG3R8f4/KiWqyYgXTLHs0+Ted7tG3zFT7pgHJbtomzZ1L0ARaQ==
