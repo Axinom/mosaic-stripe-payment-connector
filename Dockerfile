@@ -36,6 +36,9 @@ ARG PACKAGE_BUILD_COMMAND
 
 WORKDIR "/app/$PACKAGE_ROOT"
 
+RUN chown -R node:node /app
+USER node
+
 COPY --from=build ["/checkout/$PACKAGE_ROOT/package.json", "./"]
 COPY --from=build ["/checkout/node_modules", "/app/node_modules/"]
 COPY --from=build ["/checkout/$PACKAGE_ROOT/node_modules", "./node_modules/"]

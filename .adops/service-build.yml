@@ -6,7 +6,7 @@ pool:
   demands: project_navy
 
 variables:
-  dockerfilePath: '.adops/docker/Dockerfile'
+  dockerfilePath: 'Dockerfile'
   tag: '$(Build.BuildNumber)'
   # Yarn Cache Folder
   YARN_CACHE_FOLDER: $(Pipeline.Workspace)/.yarn
