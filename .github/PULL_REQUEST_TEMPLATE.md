@@ -4,8 +4,9 @@
 
 ## Prerequisites
 
-- [ ] My code follows the coding conventions
-- [ ] All tests pass
+- [ ] potential **release notes** to the PR description added
+- [ ] potential **testing notes** to the PR description added
+- [ ] appropriate labels for the PR applied
 
 ## Description
 
