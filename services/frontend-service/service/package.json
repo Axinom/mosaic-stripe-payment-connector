@@ -29,7 +29,7 @@
   "dependencies": {
     "@axinom/mosaic-id-guard": "0.22.0",
     "@axinom/mosaic-id-link-be": "0.13.8",
-    "@axinom/mosaic-service-common": "0.39.0",
+    "@axinom/mosaic-service-common": "0.43.0",
     "dotenv": "^16.0.3",
     "env-var": "^7.3.0",
     "express": "^4.18.2",
