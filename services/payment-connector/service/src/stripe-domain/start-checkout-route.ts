@@ -4,6 +4,7 @@ import { Application, json, Request, Response } from 'express';
 import { Config, parseAuthenticationTokenValue } from '../common';
 import { getMosaicBillingClient } from '../mosaic-domain';
 import { ensureCustomerExists } from './ensure-customer-exists';
+import { limiter } from './rate-limit';
 import { getStripe } from './stripe-init';
 
 /**
@@ -73,6 +74,11 @@ export const startCheckoutRoute = (app: Application, config: Config): void => {
       res.status(400).send({ subscriptionId: null, redirectUrl: null });
     }
   };
-  app.post('/start-checkout', [json(), cors(), startCheckoutMiddleware]);
+  app.post('/start-checkout', [
+    json(),
+    cors(),
+    limiter,
+    startCheckoutMiddleware,
+  ]);
   app.options('/start-checkout', [cors()]);
 };
