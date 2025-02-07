@@ -11,6 +11,7 @@ import {
   trimErrorsSkipMaskMiddleware,
 } from '@axinom/mosaic-service-common';
 import express from 'express';
+import rateLimit from 'express-rate-limit';
 import { Stripe } from 'stripe';
 import { getFullConfig } from './common';
 import { MosaicBillingClient, setMosaicBillingClient } from './mosaic-domain';
@@ -18,6 +19,12 @@ import { setStripe, setupExpressServer } from './stripe-domain';
 
 // Create the default logger instance to log the application bootstrap sequence and pass to downstream components (where it makes sense).
 const logger = new Logger({ context: 'bootstrap' });
+
+const limiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 100, // limit each IP to 100 requests per windowMs
+  message: 'Too many requests from this IP, please try again after 15 minutes',
+});
 
 /**
  * Entry point for the Payment Connector Service.
@@ -47,6 +54,7 @@ async function bootstrap(): Promise<void> {
 
   // Create an Express application instance that will be running the webhooks service
   const app = express();
+  app.use(limiter); // Apply rate limiting globally
   setStripe(app, stripe);
   setMosaicBillingClient(app, billingClient);
   setupExpressServer(app, config, logger);
