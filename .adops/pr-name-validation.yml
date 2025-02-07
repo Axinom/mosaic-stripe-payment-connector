@@ -5,6 +5,9 @@ pr:
     include:
       - main
 
+variables:
+  - group: github-automation
+
 jobs:
   - job: VerifyPrName
     pool:
@@ -19,6 +22,8 @@ jobs:
           echo "Pull Request Number: $prNumber"
 
           repoUrl=$(System.PullRequest.SourceRepositoryURI)
+          # remove .git from repoUrl if present (when raising PRs from vscode, this can happen)
+          repoUrl="${repoUrl%.git}"
 
           # extract org and repo name from repoUrl
           orgRepo=$(echo "$repoUrl" | sed -e 's/.*github.com\/\(.*\)/\1/')
@@ -43,5 +48,5 @@ jobs:
               exit 1
           fi
         env:
-          GITHUB_TOKEN: $(GITHUB_TOKEN)
+          GITHUB_TOKEN: $(GH_TOKEN) # from the variable group
         displayName: 'Verify Pull Request Name'
