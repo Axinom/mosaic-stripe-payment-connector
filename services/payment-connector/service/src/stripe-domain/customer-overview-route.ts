@@ -2,7 +2,6 @@ import { assertError, Logger } from '@axinom/mosaic-service-common';
 import cors from 'cors';
 import { Application, Request, Response } from 'express';
 import { Config, parseAuthenticationTokenValue } from '../common';
-import { limiter } from './rate-limit';
 import { getStripe } from './stripe-init';
 
 /**
@@ -53,6 +52,6 @@ export const customerOverviewRoute = (
       res.status(400).send([]);
     }
   };
-  app.get('/customer-overview', [cors(), limiter, customerOverviewMiddleware]);
+  app.get('/customer-overview', [cors(), customerOverviewMiddleware]);
   app.options('/customer-overview', [cors()]);
 };
