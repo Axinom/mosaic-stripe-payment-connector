@@ -414,7 +414,6 @@ export type DeletePaymentProviderPayload = {
    * unchanged and unused. May be used by a client to track mutations.
    */
   clientMutationId?: Maybe<Scalars['String']>;
-  deletedPaymentProviderNodeId?: Maybe<Scalars['ID']>;
   /** The `PaymentProvider` that was deleted by this mutation. */
   paymentProvider?: Maybe<PaymentProvider>;
   /** An edge for our `PaymentProvider`. May be used by Relay 1. */
@@ -451,7 +450,6 @@ export type DeletePaypalSettingPayload = {
    * unchanged and unused. May be used by a client to track mutations.
    */
   clientMutationId?: Maybe<Scalars['String']>;
-  deletedPaypalSettingNodeId?: Maybe<Scalars['ID']>;
   /** Reads a single `PaymentProvider` that is related to this `PaypalSetting`. */
   paymentProvider?: Maybe<PaymentProvider>;
   /** The `PaypalSetting` that was deleted by this mutation. */
@@ -1075,7 +1073,6 @@ export type Mutation = {
   deletePaymentProvider?: Maybe<DeletePaymentProviderPayload>;
   /** Deletes a single `PaypalSetting` using a unique key. */
   deletePaypalSetting?: Maybe<DeletePaypalSettingPayload>;
-  populateSubscriptions?: Maybe<PopulatePayload>;
   setSettings?: Maybe<SetSettingsPayload>;
   /** Updates a single `PaymentProvider` using a unique key and a patch. */
   updatePaymentProvider?: Maybe<UpdatePaymentProviderPayload>;
@@ -1121,12 +1118,6 @@ export type MutationDeletePaymentProviderArgs = {
 /** The root mutation type which contains root level fields which mutate data. */
 export type MutationDeletePaypalSettingArgs = {
   input: DeletePaypalSettingInput;
-};
-
-
-/** The root mutation type which contains root level fields which mutate data. */
-export type MutationPopulateSubscriptionsArgs = {
-  input: PopulateInput;
 };
 
 
@@ -1995,18 +1986,6 @@ export type PeriodUnitFilter = {
   notEqualTo?: InputMaybe<PeriodUnit>;
   /** Not included in the specified list. */
   notIn?: InputMaybe<Array<PeriodUnit>>;
-};
-
-export type PopulateInput = {
-  count: Scalars['Int'];
-  includeStatusChanges?: InputMaybe<Scalars['Boolean']>;
-  includeTransactions?: InputMaybe<Scalars['Boolean']>;
-};
-
-export type PopulatePayload = {
-  __typename?: 'PopulatePayload';
-  count: Scalars['Int'];
-  query?: Maybe<Query>;
 };
 
 /** The root query type which gives access points into the data universe. */
@@ -3354,9 +3333,23 @@ export type SubscriptionTypeFilter = {
   userId?: InputMaybe<UuidFilter>;
 };
 
+export enum SubscriptionTypeSubscriptionEventKey {
+  SubscriptionChanged = 'SUBSCRIPTION_CHANGED',
+  SubscriptionCreated = 'SUBSCRIPTION_CREATED',
+  SubscriptionDeleted = 'SUBSCRIPTION_DELETED',
+  SubscriptionStatusChangeChanged = 'SUBSCRIPTION_STATUS_CHANGE_CHANGED',
+  SubscriptionStatusChangeCreated = 'SUBSCRIPTION_STATUS_CHANGE_CREATED',
+  SubscriptionStatusChangeDeleted = 'SUBSCRIPTION_STATUS_CHANGE_DELETED',
+  SubscriptionTransactionChanged = 'SUBSCRIPTION_TRANSACTION_CHANGED',
+  SubscriptionTransactionCreated = 'SUBSCRIPTION_TRANSACTION_CREATED',
+  SubscriptionTransactionDeleted = 'SUBSCRIPTION_TRANSACTION_DELETED'
+}
+
 export type SubscriptionTypeSubscriptionPayload = {
   __typename?: 'SubscriptionTypeSubscriptionPayload';
+  /** @deprecated Use 'eventKey' instead. */
   event?: Maybe<Scalars['String']>;
+  eventKey?: Maybe<SubscriptionTypeSubscriptionEventKey>;
   id: Scalars['UUID'];
   subscription?: Maybe<SubscriptionType>;
 };
