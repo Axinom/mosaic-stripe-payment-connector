@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
-import { stub } from 'jest-auto-stub';
 import 'jest-extended';
+import { mock } from 'jest-mock-extended';
 import { Stripe } from 'stripe';
 import { MosaicBillingClient } from '../mosaic-domain';
 import {
@@ -14,12 +14,11 @@ import {
 
 describe('Webhook Tests', () => {
   // The Mosaic billing client would call the GraphQL API of the Billing Service
-  const billingClient = stub<MosaicBillingClient>();
+  const billingClient = mock<MosaicBillingClient>();
   // Return a specific invoice and subscription instead of calling the Stripe API
-  const stripe = stub<Stripe>({
-    invoices: stub<Stripe.InvoicesResource>(),
-    subscriptions: stub<Stripe.SubscriptionsResource>(),
-  });
+  const stripe = mock<Stripe>();
+  stripe.invoices = mock<Stripe.InvoicesResource>();
+  stripe.subscriptions = mock<Stripe.SubscriptionsResource>();
   (stripe.invoices.retrieve as jest.Mock).mockResolvedValue(
     require('./resources/api-invoice-with-subscription.json'),
   );
