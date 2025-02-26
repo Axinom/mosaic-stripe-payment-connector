@@ -27,9 +27,9 @@
     "token": "yarn util:load-vars ts-node --files -r dotenv/config scripts/end-user-token.ts"
   },
   "dependencies": {
-    "@axinom/mosaic-id-guard": "0.40.0",
-    "@axinom/mosaic-id-link-be": "0.29.0",
-    "@axinom/mosaic-service-common": "0.57.0",
+    "@axinom/mosaic-id-guard": "0.42.0",
+    "@axinom/mosaic-id-link-be": "0.31.0",
+    "@axinom/mosaic-service-common": "0.59.0",
     "dotenv": "^16.0.3",
     "env-var": "^7.3.0",
     "express": "^4.18.2",
