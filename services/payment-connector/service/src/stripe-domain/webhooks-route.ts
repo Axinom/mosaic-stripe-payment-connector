@@ -14,6 +14,20 @@ import {
 } from './webhook-handlers';
 
 /**
+ * Simple HTML sanitizer to prevent XSS by escaping basic HTML characters.
+ * @param str The string to sanitize.
+ * @returns The sanitized string.
+ */
+const sanitizeHTML = (str: string): string => {
+  return str
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#039;');
+};
+
+/**
  * Registers the express-based route to start the webhook endpoint called by Stripe
  *
  * @param app The express application
@@ -117,11 +131,14 @@ export const webhooksRoute = (app: Application, config: Config): void => {
       assertError(error);
       logger.error(error);
 
+      // Sanitize the error message before embedding it in the response
+      const sanitizedErrorMessage = sanitizeHTML((error as Error).message);
+
       // Return a 400 error response so Stripe will send the event again.
       response.status(400).send(/*html*/ `<!DOCTYPE html>
         <html>
           <body>
-            <h1>Could not process the webhook: ${(error as Error).message}</h1>
+            <h1>Could not process the webhook: ${sanitizedErrorMessage}</h1>
           </body>
         </html>
         `);
